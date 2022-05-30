@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org"> 
+     <head th:fragment="head"> 
+        <meta charset="utf-8" /> 
+        
+        <title>Znajdź opiekę dla swojego zwierzaka&reg;</title> 
+        
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+            <style>
+                body{
+                    background-image: url('https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png');
+                    background-size: cover;
+                }
+                .footer {
+                position: fixed; bottom: 0px; left: 1px; height: 10px;width: 100%;
+                }
+                .nav > li {
+                display: inline;
+                background: #0a4275;
+                border: #0a4275 solid ;
+                border-radius: 5px;
+                padding: 3px;
+                margin:3px;
+                color: white;
+                }
+               a{ color:white;}
+            </style>
+    </head> 
+ 
+    <body class="d-flex flex-column min-vh-100"> 
+        <div th:fragment="navigationPanel" >
+            <ul class="nav">
+                <li class="text-center text-white " sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">Zaloguj się</a></li>
+                
+                <li class="text-center text-white " sec:authorize="!isAuthenticated()">
+                <a th:href="@{/register}">Zarejestruj się</a></li>
+                
+                <li class="text-center text-white " sec:authorize="isAuthenticated()">
+                <a th:href="@{/mypets}">Wyświetl swoje zwierzaki</a></li>
+                
+                <li class="text-center text-white " sec:authorize="isAuthenticated()">
+                <a th:href="@{/addpet}">Dodaj zwierzaka</a></li>
+                
+                <li class="text-center text-white " sec:authorize="isAuthenticated()">
+                <a th:href="@{/pets}">Wyświetl wszystkie zwierzaki</a></li>
+                
+                <li class="text-center text-white" sec:authorize="isAuthenticated()">
+                <a th:href="@{/users}">Wyświetl właścicieli</a></li>
+                
+                <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/delete}">Usuń konto</a></li>
+                
+                <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/editusr}">Edytuj właściciela</a></li>
+                
+                <li class="text-center text-white " sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}">Wyloguj się</a></li>
+            </ul>
+        </div>
+        
+    </body> 
+    <div th:fragment="footer"> 
+            <footer class="text-center text-white navbar fixed-bottom" style="background-color: #0a4275;">
+                <hr/> 
+                    <p>Sebastian Łagowski&reg; Projekt PAI&trade;</p> 
+            </footer> 
+        </div> 
+</html>

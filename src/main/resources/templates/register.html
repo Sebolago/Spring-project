@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org"> 
+    <head th:include="layout :: head"> 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+ 
+    </head> 
+    <body> 
+        <div class="col">
+        <div class="d-flex justify-content-center " th:include="layout :: navigationPanel"></div> 
+        <h1 class="d-flex justify-content-center ">Rejestracja:</h1> 
+        <div class="d-flex justify-content-center "> 
+        
+        <form th:action="@{/register}" method="POST" th:object="${user}"> 
+            <label >Imię </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{name}" placeholder="Imię"/>
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <label >Nazwisko </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{surname}" placeholder="Nazwisko"/>
+            <span class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+            <label >Telefon </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{phone}" placeholder="Nr tel"/>
+            <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+            <label >Login </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{login}" placeholder="Login"/>
+            <span class="error" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+            <label >Hasło </label><br/>
+            <input class="input-group" th:errorClass="error" type="password" th:field="*{password}" placeholder="Hasło"/>
+            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span> 
+            <button type="submit">Zarejestruj się</button> 
+        </form> 
+        </div>
+       
+        <div  th:include="layout :: footer"></div> 
+         </div>
+    </body> 
+</html>

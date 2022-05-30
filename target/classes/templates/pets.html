@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">   
+<head th:include="layout::head"> 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+<body>
+<div class="d-flex justify-content-center " th:include="layout :: navigationPanel"></div>
+<h1 class="d-flex justify-content-center ">Lista zwierzaków:</h1>
+
+
+<div class="d-flex justify-content-center " th:if="${#lists.isEmpty(pets)}">
+            Brak zwierzaków w bazie danych...
+</div>
+
+
+<table  class="table table-striped d-flex justify-content-center" th:if="${!#lists.isEmpty(pets)}">
+<tr> <th>petID</th> <th>Imie</th> 
+<th>Gatunek</th><th>Wiek</th> 
+<th>Umaszczenie</th><th>Opis</th> 
+<th>Miejscowość</th><th>Właściciel</th>
+<th>Nr tel</th>
+
+
+</tr>        
+
+<tr th:each="pet:${pets}">
+<td th:text="${pet.petid}"> </td>
+<td th:text="${pet.name}"></td>
+<td th:text="${pet.type}"></td>
+<td th:text="${pet.age}"></td>
+<td th:text="${pet.color}"></td>
+<td th:text="${pet.about}"></td>
+<td th:text="${pet.city}"></td>
+<td th:text = "${users.findByUserid(pet.userid) != null}? ${users.findByUserid(pet.userid).name} :'Użytkownik nie istnieje '"></td>
+<td th:text = "${users.findByUserid(pet.userid) != null}? ${users.findByUserid(pet.userid).phone} :'Użytkownik nie istnieje '"></td>
+
+
+</tr>            
+</table>
+
+<div  th:include="layout::footer"></div>
+</body>
+</html> 
+

@@ -1,0 +1,54 @@
+
+<!DOCTYPE html> 
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org"> 
+    <head th:include="layout :: head"> 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+ 
+    </head> 
+    <body> 
+        <div class="col">
+        <div class="d-flex justify-content-center " th:include="layout :: navigationPanel"></div> 
+        <h1 class="d-flex justify-content-center ">Edycja Twojego zwierzaka:</h1> 
+        <div class="d-flex justify-content-center "> 
+        
+        <form th:action="@{/editpet}" method="POST" th:object="${pet}"> 
+            <label >Imię </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{name}" />
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            
+            <label >Gatunek </label><br/>
+            <select th:field="*{type}">
+                <option value="Pies">Pies</option>
+                <option value="Kot">Kot</option>
+                <option value="Alpaka">Alpaka</option>
+                <option value="Chomik">Chomik</option>
+                <option value="Pająk">Pająk</option>
+             </select><br/>
+            
+            <label >Wiek </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{age}" />
+            <span class="error" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+            
+            <label >Umaszczenie </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{color}" />
+            <span class="error" th:if="${#fields.hasErrors('color')}" th:errors="*{login}"></span>
+            
+            <label >Rasa </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{about}"/>
+            <span class="error" th:if="${#fields.hasErrors('about')}" th:errors="*{about}"></span> 
+            
+            <label >Miejscowość </label><br/>
+            <input class="input-group" th:errorClass="error" type="text" th:field="*{city}"/>
+            <span class="error" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span> 
+            
+            <button type="submit">Zakończ edycję zwierzaka</button> 
+        </form> 
+        </div>
+       
+        <div  th:include="layout :: footer"></div> 
+         </div>
+    </body> 
+</html>
